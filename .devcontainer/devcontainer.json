@@ -1,0 +1,11 @@
+{
+    "name": "SPARK ENV",
+    "dockerFile": "Dockerfile",
+    "appPort": [3000],
+    "runArgs": ["--name", "spark-node"],
+    "settings": {
+        "terminal.integrated.automationShell.linux": "/bin/bash"
+    },
+
+    "mounts": ["source=C:\\Users\\jaswa\\Documents\\SEDS-Capstone\\model,target=/model,type=bind,consistency=cached"]
+}
