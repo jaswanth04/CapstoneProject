@@ -44,11 +44,18 @@ $curl -X POST -H "Content-Type: application/json" -d @sink-connector.json http:/
 {"name":"mongo-sink","config":{"connector.class":"com.mongodb.kafka.connect.MongoSinkConnector","tasks.max":"1","topics":"news","connection.uri":" mongodb://mongo:27017/","database":"capstone","collection":"newsRss","key.converter":"org.apache.kafka.connect.storage.StringConverter","value.converter":"org.apache.kafka.connect.json.JsonConverter","value.converter.schemas.enable":"false","name":"mongo-sink"},"tasks":[],"type":"sink"}
 
 ```
-
 After executing the above command, you will get the above response. It is successful
 
-Sometime curl might not work properly in certain terminals, like Windows Power Shell, zsh etc. 
-Please find the the necessary commands for those terminals, in order to run the configuration.
+Sometime curl might not work properly in certain terminals, like Windows Power Shell, zsh etc. Please find the the necessary commands for those terminals, in order to run the configuration.
+
+
+## website  - NEWS ARTICLE CLASSIFIER
+
+http://localhost:9000/
+
+
+
+##ADDITIONAL POINTERS TO VERIFY DOCKERs
 
 ## Using the trainer
 
