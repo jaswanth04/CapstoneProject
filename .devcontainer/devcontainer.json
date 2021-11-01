@@ -2,7 +2,7 @@
     "name": "SPARK ENV",
     "dockerFile": "Dockerfile",
     "appPort": [3000],
-    "runArgs": ["--name", "spark-node"],
+    "runArgs": ["--name=spark-node", "--network=localnet"],
     "settings": {
         "terminal.integrated.automationShell.linux": "/bin/bash"
     },
