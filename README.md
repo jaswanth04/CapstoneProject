@@ -54,3 +54,8 @@ Sometime curl might not work properly in certain terminals, like Windows Power S
 ## website  - NEWS ARTICLE CLASSIFIER
 
 http://localhost:9000/
+
+1) Predict for predicting the news category
+2) Retrain for triger  the news data feed and retrain the model.
+
+Note* if predict tabe do not work . Kindly retrain and then use predict.
