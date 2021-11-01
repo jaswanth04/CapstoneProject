@@ -1,1 +1,0 @@
-{"class":"org.apache.spark.ml.feature.Tokenizer","timestamp":1635752062505,"sparkVersion":"3.1.1","uid":"Tokenizer_3f083de265fa","paramMap":{"outputCol":"words","inputCol":"news"},"defaultParamMap":{"outputCol":"Tokenizer_3f083de265fa__output"}}

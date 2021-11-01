@@ -32,12 +32,15 @@ def predict():
     else:
         news = request.form['entry'] 
         print(news)
-        qry['news']=news
-        predict = requests.post(" http://trainer:3000/predict",json=qry)
+        qry['query']=news
+        predict = requests.post("http://predictor:3000/predict",json=qry)
         result=predict.json()
-        try:  exp=result['exp'] 
-        except :  exp=""
-        return render_template('predict.html', entry=news,predict=result['result'], exp=result['exp'])
+        print(result)
+        try:  
+            exp=result['exp'] 
+        except:  
+            exp="a"
+        return render_template('predict.html', entry=news,predict=result['prediction'], exp=exp)
 
 
 @app.route('/retrain',  methods =['GET', 'POST'])
@@ -46,7 +49,7 @@ def Retrain():
     if request.method == 'GET':
         return render_template('retrain.html',accu=accu, algo=model,dt=dt)
     else:
-        retrain=requests.get("http://trainer:3000/train?update=false")
+        retrain=requests.get("http://trainer:3000/train?update=true")
         result=retrain.json()
         accu=result['Naive_Bayes']
         model='Naive_Bayes'
@@ -54,6 +57,6 @@ def Retrain():
         return render_template('retrain.html',accu=accu, algo=model,dt=dt) 
 
 
-if __name__ == '__main__':  
+# if __name__ == '__main__':  
     #app.secret_key = SECRET_KEY
-    app.run(host='0.0.0.0',port=8000)
+app.run(host='0.0.0.0', port=5000)
