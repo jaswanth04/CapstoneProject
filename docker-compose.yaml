@@ -128,6 +128,15 @@ services:
     ports:
       - 5000:3000
 
+  front-end:
+    build: frontend
+    hostname: front-end
+    container_name: front-end
+    depends_on:
+      - trainer
+      - predictor
+    ports:
+      - 6000:8000
   
 
 networks:
