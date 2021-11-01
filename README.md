@@ -56,6 +56,6 @@ Sometime curl might not work properly in certain terminals, like Windows Power S
 http://localhost:9000/
 
 1) Predict page for predicting the news category
-2) Retrain page for trigerring the news data feed and retrain the model.
+2) Retrain page for trigerring the news data feed and retrain the model. Retraining takes around 3-4 minute as it trigger news data feed , and retraining.
 
 Note* if predict tabe do not work . Kindly retrain and then use predict.
