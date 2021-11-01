@@ -140,9 +140,9 @@ def create_app():
 
         update = request.args.get("update")
 
-        update_db = (update == "true") or (update == "True") or (update == "TRUE")
+        update_value = (update == "true") or (update == "True") or (update == "TRUE")
 
-        if update_db:
+        if update_value:
             update_db()
         df = spark.read.format("mongo").load()
         # df.show()
