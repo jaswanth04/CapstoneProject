@@ -130,13 +130,13 @@ services:
 
   front-end:
     build: frontend
-    hostname: front-end
-    container_name: front-end
+    hostname: frontend
+    container_name: frontend
     depends_on:
       - trainer
       - predictor
     ports:
-      - 6000:8000
+      - 9000:5000
   
 
 networks:
