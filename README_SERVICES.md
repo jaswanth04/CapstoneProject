@@ -1,3 +1,5 @@
+# Services info
+
 This services are to be used by the front end
 
 Create a new directory by name kafka/rs1 in the current directory
@@ -8,7 +10,9 @@ This is to store and persist data stored by mongodb docker container
 mkdir kafka/rs1
 ```
 
-Building the docker images
+## Building the docker images
+
+To build the images
 
 ```
 docker compose build
