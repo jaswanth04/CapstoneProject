@@ -39,7 +39,7 @@ def predict():
         try:  
             exp=result['exp'] 
         except:  
-            exp="a"
+            exp=""
         return render_template('predict.html', entry=news,predict=result['prediction'], exp=exp)
 
 

@@ -9,9 +9,9 @@
 				<dd>Please click below to start retraining</dd><br>
 				<dd><input type=submit name="submit_button" value="Retrain">
 					{% if algo %}<h3 align="center">Model Last Retrained as below </h3>
-						<div>Model Retrainig is done using ML Algorithm: {{ algo|safe }}</div>{% endif %}
+						<div>Model Retraining is done using ML Algorithm: {{ algo|safe }}</div>{% endif %}
 					{% if accu %}<div>Model Accuracy is : {{ accu|safe }}</div>{% endif %}
-					{% if dt %}<div>Model Accuracy is : {{ dt|safe }}</div>{% endif %}
+					{% if dt %}<div>Refresged Data is : {{ dt|safe }}</div>{% endif %}
 				</dd>  
 			</dl>
 		</form>

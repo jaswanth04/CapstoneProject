@@ -9,7 +9,7 @@
 				<dd>Enter news article:<input type=text name="entry" 
 										value='{% if entry %}{{ entry }}{% endif %}'></dd><br>
 				<dd><input type=submit name="submit_button" value="Predict"> &nbsp;&nbsp;
-					{% if exp %}<h1 align="center">Predicted News Category: {{ predict|safe }}</h1>{% endif %}
+					{% if predict %}<h1 align="center">Predicted News Category: {{ predict|safe }}</h1>{% endif %}
 				</dd>  
 			</dl>
 		</form>
