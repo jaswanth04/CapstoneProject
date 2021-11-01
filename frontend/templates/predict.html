@@ -1,0 +1,24 @@
+{% extends "structure.html" %}
+
+
+{% block main %}
+<h2>PREDICT</h2>
+	<div class="container">
+		<form action="/predict" method="post" >
+			<dl>
+				<dd>Enter news article:<input type=text name="entry" 
+										value='{% if entry %}{{ entry }}{% endif %}'></dd><br>
+				<dd><input type=submit name="submit_button" value="Predict"> &nbsp;&nbsp;
+					{% if predict %}<h1 align="center">Predicted News Category: {{ predict|safe }}</h1>{% endif %}
+				</dd>  
+			</dl>
+		</form>
+	</div>
+	{% if exp %}
+		<h3 align="center">Result Explained as below between two of the most probable category</h3>
+		<div class="container">
+			{{ exp|safe }}
+		</div>
+	{% endif %}
+
+{% endblock main %}

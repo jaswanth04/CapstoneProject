@@ -1,0 +1,19 @@
+{% extends "structure.html" %}
+
+
+{% block main %}
+	<h2>RETRAIN</h2>
+	<div class="container">
+		<form action="/retrain" method="POST" >
+			<dl>
+				<dd>Please click below to start retraining</dd><br>
+				<dd><input type=submit name="submit_button" value="Retrain">
+					{% if algo %}<h3 align="center">Model Last Retrained as below </h3>
+						<div>Model Retraining is done using ML Algorithm: {{ algo|safe }}</div>{% endif %}
+					{% if accu %}<div>Model Accuracy is : {{ accu|safe }}</div>{% endif %}
+					{% if dt %}<div>Refreshed Data is : {{ dt|safe }}</div>{% endif %}
+				</dd>  
+			</dl>
+		</form>
+	</div>
+{% endblock main %}

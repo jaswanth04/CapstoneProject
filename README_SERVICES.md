@@ -1,5 +1,3 @@
-# CapstoneProject
-
 # Services info
 
 This services are to be used by the front end
@@ -55,7 +53,39 @@ Sometime curl might not work properly in certain terminals, like Windows Power S
 
 http://localhost:9000/
 
-1) Predict page for predicting the news category
-2) Retrain page for trigerring the news data feed and retrain the model. Retraining takes around 3-4 minute as it trigger news data feed , and retraining.
 
-Note* if predict tabe do not work . Kindly retrain and then use predict.
+
+##ADDITIONAL POINTERS TO VERIFY DOCKERs
+
+## Using the trainer
+
+Send a get request with the argument by name update
+
+```
+# To update the db and retrain the model
+
+http://localhost:4000/train?update=true
+
+
+# To only retrain the model without updating the DB
+
+http://localhost:4000/train?update=false
+```
+
+
+## Using the predictor
+
+Send a post request to the predictor
+
+```
+http://localhost:5000/predict
+
+# Request type: POST
+
+# Body with query
+{
+    "query": "People escape through windows of a Tokyo train line following a knife, arson and acid attack, in Tokyo, Japan October 31, 2021 in this still image obtained from a social media video. \u00a9 Twitter / @SIZ33 via Reuters A man dressed in Batman's Joker costume and brandishing a knife on a Tokyo commuter train on Sunday stabbed several passengers before starting a fire, which sent people scrambling to escape and jumping from windows, police and witnesses said. The Tokyo Fire Department said 17 passengers were injured, including three seriously."
+}
+
+
+```

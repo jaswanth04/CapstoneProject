@@ -24,6 +24,33 @@ import feedparser
 
 from flask import Flask, request, abort, session, jsonify, send_file, redirect, Response
 
+# Updating the db with information from Rapid API
+def message_from_rapid():
+    producer = KafkaProducer(bootstrap_servers=['broker:9092'], value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+    url = "https://free-news.p.rapidapi.com/v1/search"
+    querystring = {"q":"a","lang":"en"}
+    headers = {
+        'x-rapidapi-host': "free-news.p.rapidapi.com",
+        'x-rapidapi-key': "c3b2f57ad2mshf298f21e439d8dbp1a3c9djsn0b6273af2fdd"
+        }
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    msg=response.json()
+    for i in range(0,len(msg['articles'])):
+        # print(msg['articles'][i])
+        title=msg['articles'][i]['title']
+        date=msg['articles'][i]['published_date']
+        summary=msg['articles'][i]['summary']
+        topic=msg['articles'][i]['topic']
+        link = msg["articles"][i]['link']
+        source=msg['articles'][i]['clean_url']
+        feature_dict = {'title': title, 'link': link, 'description': summary, 'pubdate': date,  'topic': topic ,"source": source}
+        feature_json = json.dumps(feature_dict)
+        # time.sleep(1)
+        print(feature_json)
+        producer.send(topic='news', value=feature_json)
+
+        if i > 4000:
+            break
 
 
 def get_response_from_feedparser(url):
@@ -50,6 +77,7 @@ def get_response_from_feedparser(url):
     return post_list
 
 
+# Updating the db with information from RSS feed
 def update_db():
     producer = KafkaProducer(bootstrap_servers=['broker:9092'], value_serializer=lambda v: json.dumps(v).encode('utf-8'))
     print("Connected to Kafka!!")
@@ -86,17 +114,18 @@ def update_db():
                 }
 
     for topic, url in times_rss.items():
-        article_dict = get_response_from_feedparser(url)
+        article_list = get_response_from_feedparser(url)
         
-        for article in article_dict:
+        for article in article_list:
             article["topic"] = topic
             article["source"] = "Times"
             print(article)
+            producer.send(topic='news', value=article)
 
     for topic, url in hindu_rss.items():
-        article_dict = get_response_from_feedparser(url)
+        article_list = get_response_from_feedparser(url)
         
-        for article in article_dict:
+        for article in article_list:
             article["topic"] = topic
             article["source"] = "Hindu"
             print(article)
@@ -140,10 +169,11 @@ def create_app():
 
         update = request.args.get("update")
 
-        update_db = (update == "true") or (update == "True") or (update == "TRUE")
+        update_value = (update == "true") or (update == "True") or (update == "TRUE")
 
-        if update_db:
+        if update_value:
             update_db()
+            message_from_rapid()
         df = spark.read.format("mongo").load()
         # df.show()
         df2=df.select("description","title","topic").filter("topic is not  null and description is not null").distinct()

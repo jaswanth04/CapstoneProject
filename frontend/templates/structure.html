@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+
+<body>
+ 
+    <div id="myDIV" class="sidebar">
+        <a class="btn" href="/">Home</a>
+        <a class="btn" href="/predict">Predict</a>
+        <a class="btn" href="/retrain">Retrain</a>
+        <a class="btn" href="/about">About</a>
+        <a class="btn" href="/">Back</a>
+      </div>
+    <br>
+    <br>
+    <br>
+    <div class="content">
+      <h1>NEWS ARTICLE CLASSIFIER</h1><br>
+        {% block main %}
+            <h1>This only shows on structure.html</h1>
+
+        {% endblock main %}
+    </div>
+
+
+
+    <script>
+        // Add active class to the current button (highlight it)
+        var header = document.getElementById("myDIV");
+        var btns = header.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].addEventListener("click", function() {
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+          });
+        }
+        </script>
+
+</body>
+
+
+</html>
